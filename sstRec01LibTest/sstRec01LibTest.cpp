@@ -18,7 +18,7 @@
 #include <stdio.h>
 #include <assert.h>
 
-#include <sst_rec01_lib.h>
+#include <sstRec01Lib.h>
 
 #define BUFSIZE 80
 

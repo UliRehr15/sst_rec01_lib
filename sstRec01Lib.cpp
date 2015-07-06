@@ -19,7 +19,7 @@
 #include <string.h>
 #include <stdio.h>
 
-#include <sst_rec01_lib.h>
+#include <header/sstRec01Lib.h>
 
 stash::stash(int Size) {
   size = Size;

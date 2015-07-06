@@ -10,9 +10,9 @@ CONFIG    += staticlib
 
 INCLUDEPATH = ../Header
 
-HEADERS		+=  ../Header/sst_rec01_lib.h
+HEADERS		+=  ./header/sstRec01Lib.h
 
-SOURCES		+=  sst_rec01_lib.cpp
+SOURCES		+=  sstRec01Lib.cpp
 
 debug{
   TARGET		= sst_rec01_lib_d
