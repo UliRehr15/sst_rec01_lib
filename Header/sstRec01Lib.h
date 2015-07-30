@@ -11,7 +11,7 @@
  * See the COPYING file for more information.
  *
  **********************************************************************/
-// sst_rec01_lib.h   19.06.15  Re.   19.06.15  Re.
+// sstRec01Lib.h   19.06.15  Re.   19.06.15  Re.
 //
 // Datastructures and Prototypes for system "sstRec01Lib"
 //
@@ -19,18 +19,22 @@
 #ifndef   _SST_REC01_LIB_HEADER
 #define   _SST_REC01_LIB_HEADER
 
+// forward declaration ---------------------------------------------------------
+
+class sstRec01InternCls;
+
+//------------------------------------------------------------------------------
+
+
 class stash {
-  int size;  // Size of each space
-  int quantity; // Number of storage spaces
-  int next; // Next empty space
-  // Dynamically allocated array of bytes:
-  unsigned char* storage;
-  void inflate(int increase);
 public:
   stash(int Size);
   ~stash();
   int add(void* element);
   void* fetch(int index);
   int count();
+  sstRec01InternCls *poRec01Intern;   /**< Pointer to intern object */
+
 };
+
 #endif // SST_REC01_LIB

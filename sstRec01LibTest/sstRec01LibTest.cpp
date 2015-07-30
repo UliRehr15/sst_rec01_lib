@@ -27,7 +27,7 @@ int main() {
   for(int j = 0; j < 100; j++)
     intStash.add(&j);
 
-  FILE* file = fopen("sst_rec01_lib_test.cpp", "r");
+  FILE* file = fopen("sstRec01LibTest.cpp", "r");
   assert(file);
   // Holds 80-character strings:
   stash stringStash(sizeof(char) * BUFSIZE);

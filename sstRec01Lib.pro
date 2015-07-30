@@ -8,11 +8,15 @@ CONFIG    -= release  # DEBUG is active
 
 CONFIG    += staticlib
 
-INCLUDEPATH = ../Header
+INCLUDEPATH = ./Header
 
-HEADERS		+=  ./header/sstRec01Lib.h
+HEADERS		+=  ./Header/sstRec01Lib.h
+HEADERS		+= sstRec01LibInt.h
 
 SOURCES		+=  sstRec01Lib.cpp
+SOURCES		+=  sstRec01LibInt.cpp
+
+OTHER_FILES += readme.txt
 
 debug{
   TARGET		= sst_rec01_lib_d

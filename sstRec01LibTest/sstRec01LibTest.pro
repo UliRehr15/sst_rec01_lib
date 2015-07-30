@@ -6,7 +6,7 @@ CONFIG       -= windows
 # CONFIG       -= debug  # RELEASE is active
 CONFIG       -= release  # DEBUG is active
 
-INCLUDEPATH +=  ../header
+INCLUDEPATH +=  ../Header
 
 debug{
   LIBS        += ../../libs/libsst_rec01_lib_d.a
