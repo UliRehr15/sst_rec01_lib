@@ -18,3 +18,4 @@ Versions
 1.0 Inertial check in.
 1.1 Small corrections
 20150729: 1.2 divide class into interface and intern.
+20150804: 1.3 doxygen header added
