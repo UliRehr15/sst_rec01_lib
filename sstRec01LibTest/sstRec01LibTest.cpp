@@ -23,27 +23,66 @@
 #define BUFSIZE 80
 
 int main() {
-  stash intStash(sizeof(int));
-  for(int j = 0; j < 100; j++)
-    intStash.add(&j);
+//=============================================================================
+    {
+    stash intStash(sizeof(int));
+    for(int j = 0; j < 100; j++)
+      intStash.add(&j);
 
-  FILE* file = fopen("sstRec01LibTest.cpp", "r");
-  assert(file);
-  // Holds 80-character strings:
-  stash stringStash(sizeof(char) * BUFSIZE);
-  char buf[BUFSIZE];
-  while(fgets(buf, BUFSIZE, file))
-    stringStash.add(buf);
-  fclose(file);
+    FILE* file = fopen("sstRec01LibTest.cpp", "r");
+    assert(file);
+    // Holds 80-character strings:
+    stash stringStash(sizeof(char) * BUFSIZE);
+    char buf[BUFSIZE];
+    while(fgets(buf, BUFSIZE, file))
+      stringStash.add(buf);
+    fclose(file);
 
-  for(int k = 0; k < intStash.count(); k++)
-    printf("intStash.fetch(%d) = %d\n", k,
-           *(int*)intStash.fetch(k));
+    for(int k = 0; k < intStash.count(); k++)
+      printf("intStash.fetch(%d) = %d\n", k,
+             *(int*)intStash.fetch(k));
 
-  for(int i = 0; i < stringStash.count(); i++)
-    printf("stringStash.fetch(%d) = %s",
-           i, (char*)stringStash.fetch(i++));
-  putchar('\n');
+    for(int i = 0; i < stringStash.count(); i++)
+      printf("stringStash.fetch(%d) = %s",
+             i, (char*)stringStash.fetch(i++));
+    putchar('\n');
+    }
+//=============================================================================
+    {
+    stash intStash(sizeof(int));
+    int index = 0;
+    for(int j = 0; j < 100; j++)
+      // intStash.add(&j);
+      intStash.WritNew(0,&j,&index);
+
+    FILE* file = fopen("sstRec01LibTest.cpp", "r");
+    assert(file);
+    // Holds 80-character strings:
+    stash stringStash(sizeof(char) * BUFSIZE);
+    index = 0;
+    char buf[BUFSIZE];
+    while(fgets(buf, BUFSIZE, file))
+        //stringStash.add(buf);
+        stringStash.WritNew(0,buf,&index);
+    fclose(file);
+
+    for(int k = 0; k < intStash.count(); k++)
+    { int iVal=0;
+      intStash.Read(0,k,&iVal);
+//      printf("intStash.fetch(%d) = %d\n", k,
+//             *(int*)intStash.fetch(k));
+      printf("intStash.fetch(%d) = %d\n", k, iVal);
+    }
+
+    for(int i = 0; i < stringStash.count(); i++)
+    {
+        stringStash.Read(0,i++,buf);
+//        printf("stringStash.fetch(%d) = %s",
+//               i, (char*)stringStash.fetch(i++));
+        printf("stringStash.fetch(%d) = %s", i, buf);
+    }
+    putchar('\n');
+    }
 
   return 0;
 }

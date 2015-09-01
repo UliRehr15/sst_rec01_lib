@@ -60,17 +60,37 @@ class sstRec01InternCls
     ~sstRec01InternCls();  // Destructor
      //==============================================================================
      /**
-     * @brief Add record to sstRec memory
+     * @brief Write new record into sstRec memory
      *
-     * @param element [in] Record to store
+     * @param iKey    [in]  For the moment 0
+     * @param element [in]  Record to store
+     * @param index   [out] New index number
      *
-     * @return Stored record number
+     * @return Errorstate
+     *
+     * @retval   = 0: OK
+     * @retval   < 0: Unspecified Error
      */
      // ----------------------------------------------------------------------------
-     int add(void* element);
+     int WritNew(int iKey, void* element, int *index);
      //==============================================================================
      /**
-     * @brief Get record from sstRec memory with index
+     * @brief Read record from sstRec memory with Record number
+     *
+     * @param iKey  [in] For the moment 0
+     * @param index [in] record number to read
+     * @param vAdr  [out read record
+     *
+     * @return Errorstate
+     *
+     * @retval   = 0: OK
+     * @retval   < 0: Unspecified Error
+     */
+     // ----------------------------------------------------------------------------
+     int Read(int iKey, int index, void *vAdr);
+     //==============================================================================
+     /**
+     * @brief Read record from sstRec memory with Record number
      *
      * @param index [in] record number to read
      *
@@ -80,7 +100,7 @@ class sstRec01InternCls
      void* fetch(int index);
      //==============================================================================
      /**
-     * @brief return number of stored elements in sstRec memory
+     * @brief return number of stored records in sstRec memory
      *
      * @return number of records, which are stored
      */
@@ -100,6 +120,7 @@ class sstRec01InternCls
      */
      // ----------------------------------------------------------------------------
     void inflate(int increase);
+    //==============================================================================
     int size;                 /**< Size of each record */
     int quantity;             /**< Number of storage spaces */
     int next;                 /**< Number of stored records */

@@ -39,7 +39,11 @@ sstRec01InternCls::~sstRec01InternCls()
     }
 }
 //=============================================================================
-int sstRec01InternCls::add(void* element) {
+int sstRec01InternCls::WritNew(int iKey, void* element, int *index)
+{
+
+  if ( iKey != 0) return -1;
+
   if(next >= quantity) // Enough space left?
     inflate(100);
   // Copy element into storage,
@@ -47,13 +51,34 @@ int sstRec01InternCls::add(void* element) {
   memcpy(&(storage[next * size]),
          element, size);
   next++;
-  return(next - 1); // Index number
+  // return(next - 1); // Index number
+  *index = next-1;
+  return 0;
 }
 //=============================================================================
-void* sstRec01InternCls::fetch(int index) {
+int sstRec01InternCls::Read(int iKey, int index, void *vAdr)
+{
+  if ( iKey != 0) return -1;
+
+  void *vLocAdr = NULL;
+
   if(index >= next || index < 0)
-    return 0;  // Not out of bounds?
+    return -2;  // Not out of bounds?
   // Produce pointer to desired element:
+  vLocAdr = (void*) &(storage[index * size]);
+
+  // copy one record data to given record adress
+  memcpy( vAdr, vLocAdr, size);
+
+  return 0;  //  &(storage[index * size]);
+}
+//=============================================================================
+void* sstRec01InternCls::fetch(int index)
+{
+  // Not out of bounds?
+  if ( index >= next || index < 0)
+    return 0;
+  // Produce pointer to desired element
   return &(storage[index * size]);
 }
 //=============================================================================

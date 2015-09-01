@@ -38,7 +38,7 @@ class sstRec01InternCls;
 /**
 * @brief Definition stash
 *
-* template for sst base class <BR>
+* record storage <BR>
 *
 * Changed: 04.08.15  Re.
 *
@@ -88,6 +88,36 @@ public:
   */
   // ----------------------------------------------------------------------------
   int count();
+  //==============================================================================
+  /**
+  * @brief Write new record into sstRec memory
+  *
+  * @param iKey    [in]  For the moment 0
+  * @param element [in]  Record to store
+  * @param index   [out] New Record number
+  *
+  * @return Errorstate
+  *
+  * @retval   = 0: OK
+  * @retval   < 0: Unspecified Error
+  */
+  // ----------------------------------------------------------------------------
+  int WritNew(int iKey, void* element, int *index);
+  //==============================================================================
+  /**
+  * @brief Read record from sstRec memory with Record number
+  *
+  * @param iKey  [in]  For the moment 0
+  * @param index [in]  record number to read
+  * @param vAdr  [out] read Record
+  *
+  * @return Errorstate
+  *
+  * @retval   = 0: OK
+  * @retval   < 0: Unspecified Error
+  */
+  // ----------------------------------------------------------------------------
+  int Read(int iKey, int index, void *vAdr);
   //==============================================================================
 private:
   sstRec01InternCls *poRec01Intern;   /**< Pointer to intern object */

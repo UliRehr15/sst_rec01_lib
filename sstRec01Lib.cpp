@@ -33,11 +33,25 @@ stash::~stash() {
 //==============================================================================
 int stash::add(void* element) {
 
-    return(poRec01Intern->add(element) - 1); // Index number
+    // return(poRec01Intern->WritNew( 0, element) - 1); // Index number
+    int index=0;
+    poRec01Intern->WritNew(0,element,&index);
+    return index;
 }
 //==============================================================================
-void* stash::fetch(int index) {
-    return poRec01Intern->fetch(index);
+int stash::WritNew(int iKey, void* element, int *index) {
+
+    // return(poRec01Intern->WritNew(iKey, element) - 1); // Index number
+    return poRec01Intern->WritNew( iKey, element, index);
+}
+//==============================================================================
+void* stash::fetch(int index)
+{ return (poRec01Intern->fetch(index));
+}
+//==============================================================================
+int stash::Read(int iKey, int index, void *vAdr) {
+    int iStat = poRec01Intern->Read(iKey, index, vAdr);
+    return iStat;
 }
 //==============================================================================
 int stash::count() {
