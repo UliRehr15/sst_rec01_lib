@@ -23,7 +23,7 @@
 #include "sstRec01LibInt.h"
 
 //=============================================================================
-sstRec01InternCls::sstRec01InternCls(int Size)
+sstRec01InternCls::sstRec01InternCls(dREC01RECSIZTYP Size)
 {
     size = Size;
     quantity = 0;
@@ -39,7 +39,7 @@ sstRec01InternCls::~sstRec01InternCls()
     }
 }
 //=============================================================================
-int sstRec01InternCls::WritNew(int iKey, void* element, int *index)
+int sstRec01InternCls::WritNew(int iKey, void* element, dREC01RECNUMTYP *index)
 {
 
   if ( iKey != 0) return -1;
@@ -56,13 +56,14 @@ int sstRec01InternCls::WritNew(int iKey, void* element, int *index)
   return 0;
 }
 //=============================================================================
-int sstRec01InternCls::Read(int iKey, int index, void *vAdr)
+int sstRec01InternCls::Read(int iKey, dREC01RECNUMTYP index, void *vAdr)
 {
   if ( iKey != 0) return -1;
 
   void *vLocAdr = NULL;
 
-  if(index >= next || index < 0)
+  // if(index >= next || index < 0)
+  if(index >= next)
     return -2;  // Not out of bounds?
   // Produce pointer to desired element:
   vLocAdr = (void*) &(storage[index * size]);
@@ -73,10 +74,11 @@ int sstRec01InternCls::Read(int iKey, int index, void *vAdr)
   return 0;  //  &(storage[index * size]);
 }
 //=============================================================================
-void* sstRec01InternCls::fetch(int index)
+void* sstRec01InternCls::fetch(dREC01RECNUMTYP index)
 {
   // Not out of bounds?
-  if ( index >= next || index < 0)
+  //  if ( index >= next || index < 0)
+    if ( index >= next)
     return 0;
   // Produce pointer to desired element
   return &(storage[index * size]);

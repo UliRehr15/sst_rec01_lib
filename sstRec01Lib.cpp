@@ -23,7 +23,7 @@
 #include "sstRec01LibInt.h"
 
 //==============================================================================
-stash::stash(int Size) {
+stash::stash(dREC01RECSIZTYP Size) {
   poRec01Intern = new sstRec01InternCls(Size);
 }
 //==============================================================================
@@ -31,25 +31,25 @@ stash::~stash() {
     delete(poRec01Intern);
 }
 //==============================================================================
-int stash::add(void* element) {
+dREC01RECNUMTYP stash::add(void* element) {
 
     // return(poRec01Intern->WritNew( 0, element) - 1); // Index number
-    int index=0;
+    dREC01RECNUMTYP index=0;
     poRec01Intern->WritNew(0,element,&index);
     return index;
 }
 //==============================================================================
-int stash::WritNew(int iKey, void* element, int *index) {
+int stash::WritNew(int iKey, void* element, dREC01RECNUMTYP *index) {
 
     // return(poRec01Intern->WritNew(iKey, element) - 1); // Index number
     return poRec01Intern->WritNew( iKey, element, index);
 }
 //==============================================================================
-void* stash::fetch(int index)
+void* stash::fetch(dREC01RECNUMTYP index)
 { return (poRec01Intern->fetch(index));
 }
 //==============================================================================
-int stash::Read(int iKey, int index, void *vAdr) {
+int stash::Read(int iKey, dREC01RECNUMTYP index, void *vAdr) {
     int iStat = poRec01Intern->Read(iKey, index, vAdr);
     return iStat;
 }

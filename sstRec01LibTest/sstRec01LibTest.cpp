@@ -50,7 +50,7 @@ int main() {
 //=============================================================================
     {
     stash intStash(sizeof(int));
-    int index = 0;
+    dREC01RECNUMTYP index = 0;
     for(int j = 0; j < 100; j++)
       // intStash.add(&j);
       intStash.WritNew(0,&j,&index);

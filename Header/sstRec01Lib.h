@@ -26,6 +26,26 @@
  *
  */
 
+// Defines ---------------------------------------------------------------------
+
+/**
+ * @brief Record Number Type
+ * @ingroup sstRecord01Lib
+ */
+// typedef int  dREC01RECNUMTYP;    /**< Record Number Type    */
+// typedef unsigned int  dREC01RECNUMTYP;    /**< Record Number Type    */
+// typedef long  dREC01RECNUMTYP;    /**< Record Number Type    */
+typedef unsigned long  dREC01RECNUMTYP;    /**< Record Number Type    */
+
+/**
+ * @brief Record Size Type
+ * @ingroup sstRecord01Lib
+ */
+// typedef int  dREC01RECNUMTYP;    /**< Record Number Type    */
+// typedef unsigned int  dREC01RECNUMTYP;    /**< Record Number Type    */
+// typedef long  dREC01RECNUMTYP;    /**< Record Number Type    */
+typedef unsigned long  dREC01RECSIZTYP;    /**< Record Size Type    */
+
 
 // forward declaration ---------------------------------------------------------
 
@@ -58,7 +78,7 @@ public:
     * @param Size [in] Size of one record
     */
     // ----------------------------------------------------------------------------
-  stash(int Size);
+  stash(dREC01RECSIZTYP Size);
   ~stash();
   //==============================================================================
   /**
@@ -69,7 +89,7 @@ public:
   * @return stored record number
   */
   // ----------------------------------------------------------------------------
-  int add(void* element);
+  dREC01RECNUMTYP add(void* element);
   //==============================================================================
   /**
   * @brief get Record from stash memory with index
@@ -79,7 +99,7 @@ public:
   * @return Pointer to readed record
   */
   // ----------------------------------------------------------------------------
-  void* fetch(int index);
+  void* fetch(dREC01RECNUMTYP index);
   //==============================================================================
   /**
   * @brief Get number of stored records
@@ -102,7 +122,7 @@ public:
   * @retval   < 0: Unspecified Error
   */
   // ----------------------------------------------------------------------------
-  int WritNew(int iKey, void* element, int *index);
+  int WritNew(int iKey, void* element, dREC01RECNUMTYP *index);
   //==============================================================================
   /**
   * @brief Read record from sstRec memory with Record number
@@ -117,7 +137,7 @@ public:
   * @retval   < 0: Unspecified Error
   */
   // ----------------------------------------------------------------------------
-  int Read(int iKey, int index, void *vAdr);
+  int Read(int iKey, dREC01RECNUMTYP index, void *vAdr);
   //==============================================================================
 private:
   sstRec01InternCls *poRec01Intern;   /**< Pointer to intern object */

@@ -19,3 +19,5 @@ Versions
 1.1 Small corrections
 20150729: 1.2 divide class into interface and intern.
 20150804: 1.3 doxygen header added
+20150901: 1.4 extend interface
+20150906: 1.5 Extend limits to unsigned long int

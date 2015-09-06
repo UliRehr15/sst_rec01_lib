@@ -56,7 +56,7 @@ class sstRec01InternCls
     * @param Size [in] Size of one record
     */
     // ----------------------------------------------------------------------------
-     sstRec01InternCls(int Size);  // Constructor
+     sstRec01InternCls(dREC01RECSIZTYP Size);  // Constructor
     ~sstRec01InternCls();  // Destructor
      //==============================================================================
      /**
@@ -72,7 +72,7 @@ class sstRec01InternCls
      * @retval   < 0: Unspecified Error
      */
      // ----------------------------------------------------------------------------
-     int WritNew(int iKey, void* element, int *index);
+     int WritNew(int iKey, void* element, dREC01RECNUMTYP *index);
      //==============================================================================
      /**
      * @brief Read record from sstRec memory with Record number
@@ -87,7 +87,7 @@ class sstRec01InternCls
      * @retval   < 0: Unspecified Error
      */
      // ----------------------------------------------------------------------------
-     int Read(int iKey, int index, void *vAdr);
+     int Read(int iKey, dREC01RECNUMTYP index, void *vAdr);
      //==============================================================================
      /**
      * @brief Read record from sstRec memory with Record number
@@ -97,7 +97,7 @@ class sstRec01InternCls
      * @return pointer to readed record
      */
      // ----------------------------------------------------------------------------
-     void* fetch(int index);
+     void* fetch(dREC01RECNUMTYP index);
      //==============================================================================
      /**
      * @brief return number of stored records in sstRec memory
@@ -121,9 +121,9 @@ class sstRec01InternCls
      // ----------------------------------------------------------------------------
     void inflate(int increase);
     //==============================================================================
-    int size;                 /**< Size of each record */
-    int quantity;             /**< Number of storage spaces */
-    int next;                 /**< Number of stored records */
+    dREC01RECSIZTYP size;                 /**< Size of each record */
+    dREC01RECNUMTYP quantity; /**< Number of storage spaces */
+    dREC01RECNUMTYP next;     /**< Number of stored records */
     unsigned char* storage;   /**< Dynamically allocated array of bytes */
 };
 
