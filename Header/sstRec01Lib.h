@@ -35,7 +35,7 @@
 // typedef int  dREC01RECNUMTYP;    /**< Record Number Type    */
 // typedef unsigned int  dREC01RECNUMTYP;    /**< Record Number Type    */
 // typedef long  dREC01RECNUMTYP;    /**< Record Number Type    */
-typedef unsigned long  dREC01RECNUMTYP;    /**< Record Number Type    */
+typedef unsigned long  dREC01RECNUMTYP;    /**< Record Number Type: Int, Unsigned, Long, Unsigned Long   */
 
 /**
  * @brief Record Size Type
@@ -44,7 +44,7 @@ typedef unsigned long  dREC01RECNUMTYP;    /**< Record Number Type    */
 // typedef int  dREC01RECNUMTYP;    /**< Record Number Type    */
 // typedef unsigned int  dREC01RECNUMTYP;    /**< Record Number Type    */
 // typedef long  dREC01RECNUMTYP;    /**< Record Number Type    */
-typedef unsigned long  dREC01RECSIZTYP;    /**< Record Size Type    */
+typedef unsigned long  dREC01RECSIZTYP;    /**< Record Size Type: Int, Unsigned, Long, Unsigned Long  */
 
 
 // forward declaration ---------------------------------------------------------
@@ -138,6 +138,57 @@ public:
   */
   // ----------------------------------------------------------------------------
   int Read(int iKey, dREC01RECNUMTYP index, void *vAdr);
+  //==============================================================================
+  /**
+  * @brief open file with name or create new file
+  *
+  * @param iKey    [in]  For the moment 0
+  * @param cSysNam [in]  File Name
+  *
+  * @return Errorstate
+  *
+  * @retval   =  0: OK
+  * @retval   = -1: Wrong Key
+  * @retval   = -2: File already open
+  * @retval   = -3: Filename empty
+  * @retval   = -4: sstRec not empty
+  * @retval   <  0: Unspecified Error
+  */
+  // ----------------------------------------------------------------------------
+  int OpenFile(int   iKey,
+               char *cSysNam);
+  //==============================================================================
+  /**
+  * @brief open new file
+  *
+  * @param iKey    [in]  For the moment 0
+  * @param cSysNam [in]  File Name
+  *
+  * @return Errorstate
+  *
+  * @retval   =  0: OK
+  * @retval   = -1: Wrong Key
+  * @retval   = -2: File already open
+  * @retval   = -3: Filename empty
+  * @retval   = -4: sstRec not empty
+  * @retval   <  0: Unspecified Error
+  */
+  // ----------------------------------------------------------------------------
+  int NewFile(int   iKey,
+              char *cSysNam);
+  //==============================================================================
+  /**
+  * @brief Set file data store
+  *
+  * @param iKey  [in]  For the moment 0
+  *
+  * @return Errorstate
+  *
+  * @retval   = 0: OK
+  * @retval   < 0: Unspecified Error
+  */
+  // ----------------------------------------------------------------------------
+  int SetStoreFile(int iKey);
   //==============================================================================
 private:
   sstRec01InternCls *poRec01Intern;   /**< Pointer to intern object */

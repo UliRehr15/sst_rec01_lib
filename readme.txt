@@ -17,7 +17,8 @@ June 2015, Hanover, Germany, Uli Rehr
 Versions
 1.0 Inertial check in.
 1.1 Small corrections
-20150729: 1.2 divide class into interface and intern.
+20150729: 1.2 divide class into interface and intern class
 20150804: 1.3 doxygen header added
-20150901: 1.4 extend interface
+20150901: 1.4 extend interface with alternative read/write functions
 20150906: 1.5 Extend limits to unsigned long int
+20150912: 1.6 Store records in memory or in file

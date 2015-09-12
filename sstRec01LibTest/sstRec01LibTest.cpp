@@ -20,7 +20,7 @@
 
 #include <sstRec01Lib.h>
 
-#define BUFSIZE 80
+#define BUFSIZE 100
 
 int main() {
 //=============================================================================
@@ -84,5 +84,34 @@ int main() {
     putchar('\n');
     }
 
+//=============================================================================
+    // Test with storing in file
+    {
+      stash intStash(sizeof(int));
+
+      int iStat = intStash.NewFile( 0, (char*)"TestInt");
+      assert (iStat >= 0);
+
+      dREC01RECNUMTYP index = 0;
+      for(int j = 0; j < 100; j++)
+        intStash.WritNew(0,&j,&index);
+      iStat = intStash.SetStoreFile(0);
+    }
+
+    {
+      stash intStash(sizeof(int));
+      int iStat = intStash.OpenFile(0,(char*)"TestInt");
+      assert (iStat >= 0);
+
+      for(int k = 0; k < intStash.count(); k++)
+      { int iVal=0;
+        intStash.Read(0,k,&iVal);
+        printf("intStash.fetch(%d) = %d\n", k, iVal);
+      }
+
+    putchar('\n');
+    }
+
+    //=============================================================================
   return 0;
 }

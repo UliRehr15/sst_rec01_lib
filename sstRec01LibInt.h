@@ -29,6 +29,13 @@
 
 // Defines ---------------------------------------------------------------------
 
+/**
+ * @brief Maximal File Name Length
+ * @ingroup sstRecord01InternLib
+ */
+#define dREC01FILNAMNAXLEN 260   /**< Maximal File Name Length    */
+
+
 // Structures and Classes ------------------------------------------------------
 
 //==============================================================================
@@ -106,6 +113,60 @@ class sstRec01InternCls
      */
      // ----------------------------------------------------------------------------
      int count();
+     //==============================================================================
+     /**
+     * @brief Open existing or new file of record storing
+     *
+     * @param iKey    [in]  For the moment 0
+     * @param cSysNam [in]  File Name
+     *
+     * @return Errorstate
+     *
+     * @retval   =  0: OK
+     * @retval   = -1: Wrong Key
+     * @retval   = -2: File already open
+     * @retval   = -3: Filename empty
+     * @retval   = -4: sstRec not empty
+     * @retval   < 0: Unspecified Error
+     */
+     // ----------------------------------------------------------------------------
+     int OpenFile(int   iKey,
+                  char *cSysNam);
+     //==============================================================================
+     /**
+     * @brief Open new file of record storing
+     *
+     * @param iKey    [in]  For the moment 0
+     * @param cSysNam [in]  File Name
+     *
+     * @return Errorstate
+     *
+     * @retval   =  0: OK
+     * @retval   = -1: Wrong Key
+     * @retval   = -2: File already open
+     * @retval   = -3: Filename empty
+     * @retval   = -4: sstRec not empty
+     * @retval   < 0: Unspecified Error
+     */
+     // ----------------------------------------------------------------------------
+     int NewFile(int   iKey,
+                 char *cSysNam);
+     //==============================================================================
+     /**
+     * @brief Store record data in file
+     *
+     * @param iKey  [in]  For the moment 0
+     *
+     * @return Errorstate
+     *
+     * @retval   =  0: OK
+     * @retval   = -1: Wrong Key
+     * @retval   = -2: No File open
+     * @retval   < 0: Unspecified Error
+     */
+     // ----------------------------------------------------------------------------
+     int SetStoreFile(int iKey);
+     //==============================================================================
   private:  // Private functions
      //==============================================================================
      /**
@@ -121,10 +182,15 @@ class sstRec01InternCls
      // ----------------------------------------------------------------------------
     void inflate(int increase);
     //==============================================================================
-    dREC01RECSIZTYP size;                 /**< Size of each record */
+    dREC01RECSIZTYP size;     /**< Size of each record */
     dREC01RECNUMTYP quantity; /**< Number of storage spaces */
     dREC01RECNUMTYP next;     /**< Number of stored records */
     unsigned char* storage;   /**< Dynamically allocated array of bytes */
+    FILE*          FilHdl;    /**< File Handle: If not NULL, store in file   */
+    bool           bFileNotDelete;  /**< Do File not delete   */
+    char cDatnam[dREC01FILNAMNAXLEN]; /**< Filename for storing record data   */
+
+
 };
 
 #endif

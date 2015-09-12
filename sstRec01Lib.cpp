@@ -58,3 +58,30 @@ int stash::count() {
     return poRec01Intern->count();
 }
 //==============================================================================
+int stash::OpenFile(int   iKey,
+                    char *cSysNam)
+{
+  if ( iKey != 0) return -1;
+
+  int iStat = 0;
+  iStat = this->poRec01Intern->OpenFile(iKey,cSysNam);
+  return iStat;
+}
+//==============================================================================
+int stash::NewFile(int   iKey,
+                   char *cSysNam)
+{
+  if ( iKey != 0) return -1;
+
+  int iStat = 0;
+  iStat = this->poRec01Intern->NewFile(iKey,cSysNam);
+  return iStat;
+}
+//==============================================================================
+int stash::SetStoreFile(int iKey)
+{
+  if ( iKey != 0) return -1;
+  int iStat = this->poRec01Intern->SetStoreFile(iKey);
+  return iStat;
+}
+//==============================================================================
